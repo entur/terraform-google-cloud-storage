@@ -1,9 +1,9 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">=0.13.2, <0.14"
 }
 
 provider "google" {
-  version = "~> 2.19"
+  version = "~> 3.5"
   project = var.gcp_project
 }
 
@@ -14,7 +14,7 @@ resource "google_storage_bucket" "storage_bucket" {
   location           = var.location
   project            = var.gcp_project
   storage_class      = var.storage_class
-  bucket_policy_only = var.bucket_policy_only
+  uniform_bucket_level_access = var.bucket_policy_only
   labels             = var.labels
 
   versioning {
@@ -28,7 +28,7 @@ resource "google_storage_bucket" "storage_bucket" {
 
 resource "random_id" "protector" {
   count       = var.prevent_destroy ? 1 : 0
-  byte_length = 8
+  byte_length = 4
   keepers = {
     protector = google_storage_bucket.storage_bucket.id
   }
@@ -38,10 +38,10 @@ resource "random_id" "protector" {
 }
 
 resource "random_id" "suffix" {
-  byte_length = 2
+  byte_length = 4
 }
 
-# Create Service account
+/* # Create Service account
 resource "google_service_account" "storage_bucket_service_account" {
   count = var.account_id_use_existing == true ? 0 : 1
   account_id   = length(var.account_id) > 0 ? var.account_id : "${var.labels.app}-${var.kubernetes_namespace}"
@@ -69,10 +69,11 @@ resource "kubernetes_secret" "storage_bucket_service_account_credentials" {
   }
 }
 
+*/
+
 # Add service account as member to the bucket
 resource "google_storage_bucket_iam_member" "storage_bucket_iam_member" {
-  count = var.account_id_use_existing == true ? 0 : 1
   bucket = google_storage_bucket.storage_bucket.name
   role   = var.service_account_bucket_role
-  member = "serviceAccount:${google_service_account.storage_bucket_service_account[0].email}"
+  member = "serviceAccount:${var.service_account_email}"
 }
