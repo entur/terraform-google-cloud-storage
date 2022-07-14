@@ -2,15 +2,11 @@ locals {
   generation       = format("%03d", var.generation)
   bucket_shortname = var.name_override != null ? var.name_override : var.init.app.id
   bucket_name      = "ent-gcs-${local.bucket_shortname}-${var.init.environment}-${local.generation}"
-  config_map_name  = var.name_override != null ? "${var.init.app.name}-${var.name_override}-gcs" : "${var.init.app.name}-gcs"
+  config_map_name  = var.name_override != null ? "${var.init.app.name}-${var.name_override}-bucket" : "${var.init.app.name}-bucket"
   storage_purpose = {
     standard = {
       location      = var.init.is_production ? "EU" : "EUROPE-WEST1"
       storage_class = "STANDARD"
-    }
-    archive = {
-      location      = var.init.is_production ? "EU" : "EUROPE-WEST1"
-      storage_class = "ARCHIVE"
     }
   }
   default_lifecycle = {
@@ -24,6 +20,7 @@ locals {
       }
     }
   }
+  offsite_backup_label = var.disable_offsite_backup && var.init.is_production ? { label_backup_offsite = false } : {} # Add the label for opt-out of offsite backup in prod environments when disable_offsite_backup is true
 }
 
 resource "google_storage_bucket" "main" {
@@ -34,7 +31,7 @@ resource "google_storage_bucket" "main" {
   storage_class = local.storage_purpose[var.storage_purpose].storage_class
 
 
-  labels                      = var.init.labels
+  labels                      = merge(var.init.labels, local.offsite_backup_label)
   uniform_bucket_level_access = true
 
   versioning {
@@ -70,7 +67,7 @@ resource "kubernetes_config_map" "main" {
   }
 
   data = {
-    GCS_NAME = google_storage_bucket.main.name
-    GCS_URL  = google_storage_bucket.main.url
+    BUCKET_NAME = google_storage_bucket.main.name
+    BUCKET_URL  = google_storage_bucket.main.url
   }
 }

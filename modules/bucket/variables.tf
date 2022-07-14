@@ -42,7 +42,7 @@ variable "generation" {
 
   validation {
     condition     = var.generation < 1000 && var.generation > 0
-    error_message = "Generation must be bewteen [1,999]."
+    error_message = "Generation must be between [1,999]."
   }
 }
 
@@ -53,9 +53,15 @@ variable "force_destroy" {
 }
 
 variable "storage_purpose" {
-  description = "The purpose of the Cloud Storage storage class. Determines storage class and geo redundancy. Supported values: 'standard', 'archive'."
+  description = "The purpose of the Cloud Storage storage class. Determines storage class and geo redundancy. Supported values: 'standard'."
   type        = string
   default     = "standard"
+}
+
+variable "disable_offsite_backup" {
+  description = "Disable offsite backup of the bucket. Offsite backup is only applied to production environments."
+  type        = bool
+  default     = false
 }
 
 variable "versioning" {
@@ -67,7 +73,7 @@ variable "versioning" {
 variable "versioned_object_retention_days" {
   description = "The number of days to keep old versions of changed or deleted files. Only takes effect if lifecycle_rule_override is not used. NOTE: This parameter might have a large impact on cost depending bucket usage."
   type        = number
-  default     = 7
+  default     = 2
 }
 
 variable "lifecycle_rules_override" {
