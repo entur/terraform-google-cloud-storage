@@ -14,7 +14,7 @@ variable "init" {
 }
 
 variable "name_override" {
-  description = "A name override for Cloud Storage buckets resulting in a name on the form 'ent-gcs-<name_override>-<env>-<generation>'. Using the name_override will also add the name to the generated Kubernetes configmap."
+  description = "Set to override the default bucket name. Follows contentions; setting it to 'foo' in dev will result in the bucket being named 'ent-gcs-foo-dev-001' (<prefix>-<var.name_override>-<env>-<generation>). Is also applied to the name of the Kubernetes config map."
   type        = string
   default     = null
 }
@@ -36,7 +36,7 @@ variable "name_override" {
 #}
 
 variable "generation" {
-  description = "Generation of the Cloud Storage bucket. Starts at 1, ends at 999. Will be padded with leading zeros."
+  description = "The generation (aka serial no.) of the instance. Starts at 1, ends at 999. Will be padded with leading zeros."
   type        = number
   default     = 1
 
@@ -47,13 +47,13 @@ variable "generation" {
 }
 
 variable "force_destroy" {
-  description = "Whether to allow terraform to delete the bucket if it contains objects."
+  description = "Whether to allow Terraform to delete the bucket even if it contains objects."
   type        = bool
   default     = false
 }
 
 variable "storage_purpose" {
-  description = "The purpose of the Cloud Storage storage class. Determines storage class and geo redundancy. Supported values: 'standard'."
+  description = "The purpose of the storage bucket. Determines storage class, retention and geo-redundancy. Supported values: 'standard'."
   type        = string
   default     = "standard"
 }
@@ -65,19 +65,19 @@ variable "disable_offsite_backup" {
 }
 
 variable "versioning" {
-  description = "Set to true to enable object versioning."
+  description = "Whether to enable object versioning."
   type        = bool
   default     = true
 }
 
 variable "versioned_object_retention_days" {
-  description = "The number of days to keep old versions of changed or deleted files. Only takes effect if lifecycle_rule_override is not used. NOTE: This parameter might have a large impact on cost depending bucket usage."
+  description = "The number of days to keep old versions of changed or deleted files. Only takes effect if 'versioning' is enabled (default), and 'lifecycle_rule_override' is not used. NOTE: This parameter might have a large impact on cost depending on bucket use."
   type        = number
   default     = 2
 }
 
 variable "lifecycle_rules_override" {
-  description = "Object lifecycle rules used to operate on objects based on conditions."
+  description = "The bucket's Lifecycle Rules configuration (advanced). Will override the 'versioned_object_retention_days' setting."
   type = map(object({
     action = object({
       type = string
