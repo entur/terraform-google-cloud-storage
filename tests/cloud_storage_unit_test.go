@@ -15,7 +15,7 @@ func TestTerraformCloudStorageUnit(t *testing.T) {
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// Set the path to the Terraform code that will be tested.
-		TerraformDir: "../examples/minimal_test",
+		TerraformDir: "fixtures/bucket",
 
 		// Disable colors in Terraform commands so its easier to parse stdout/stderr
 		NoColor: true,

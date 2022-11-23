@@ -28,7 +28,7 @@ func TestTerraformCloudStorageIntegration(t *testing.T) {
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// Set the path to the Terraform code that will be tested.
-		TerraformDir: "../examples/minimal_test",
+		TerraformDir: "fixtures/bucket",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
