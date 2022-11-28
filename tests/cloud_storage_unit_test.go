@@ -20,9 +20,28 @@ func TestTerraformCloudStorageUnit(t *testing.T) {
 		// Disable colors in Terraform commands so its easier to parse stdout/stderr
 		NoColor: true,
 		Logger:  logger.Discard,
+
+		PlanFilePath: "plan.out",
 	})
 
-	output := terraform.InitAndPlan(t, terraformOptions)
+	plan := terraform.InitAndPlanAndShowWithStruct(t, terraformOptions)
 
-	assert.Contains(t, output, "3 to add, 0 to change, 0 to destroy", "Plan OK and should attempt to create 3 resources")
+	// Make sure the right address vas registered
+	terraform.RequireResourceChangesMapKeyExists(t, plan, "module.cloud-storage.google_storage_bucket.main")
+
+	// Check values from plan output
+	cloudStorageChanges := plan.ResourcePlannedValuesMap["module.cloud-storage.google_storage_bucket.main"]
+	// Location
+	assert.Equal(t, cloudStorageChanges.AttributeValues["location"], "EUROPE-WEST1", "Incorrect location")
+	// force destroy defalts to false
+	assert.Equal(t, cloudStorageChanges.AttributeValues["force_destroy"], false, "Force destroy should be false")
+	// storage class is standard
+	assert.Equal(t, cloudStorageChanges.AttributeValues["storage_class"], "STANDARD", "Storage class should be type STANDARD")
+	// label for disable_offsite_backup should not exist
+	labels := cloudStorageChanges.AttributeValues["labels"]
+	disable_offsite_backup := labels.(map[string]interface{})["disable_offsite_backup"]
+	assert.Emptyf(t, disable_offsite_backup, "Fount label disable_offsite_backup. This should only exist when set in a production environment.")
+	// object versioning is active
+	versioningEnabled := cloudStorageChanges.AttributeValues["versioning"].([]interface{})[0].(map[string]interface{})["enabled"]
+	assert.Equal(t, versioningEnabled, true, "Versioning is not enabled")
 }
