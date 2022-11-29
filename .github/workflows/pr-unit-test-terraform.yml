@@ -1,6 +1,9 @@
 name: Terraform Unit Tests
 
 on:
+  push:
+    paths:
+      - 'modules/bucket/**'
   pull_request:
     branches:
       - master
@@ -43,4 +46,4 @@ jobs:
         run: go mod download
       - name: Run Go Unit Tests
         working-directory: tests
-        run: go test -tags=unit
+        run: go test -tags=unit -timeout 30m

@@ -40,7 +40,7 @@ func TestTerraformCloudStorageUnit(t *testing.T) {
 	// label for disable_offsite_backup should not exist
 	labels := cloudStorageChanges.AttributeValues["labels"]
 	disable_offsite_backup := labels.(map[string]interface{})["disable_offsite_backup"]
-	assert.Emptyf(t, disable_offsite_backup, "Fount label disable_offsite_backup. This should only exist when set in a production environment.")
+	assert.Emptyf(t, disable_offsite_backup, "Found label disable_offsite_backup. This should only exist when set in a production environment.")
 	// object versioning is active
 	versioningEnabled := cloudStorageChanges.AttributeValues["versioning"].([]interface{})[0].(map[string]interface{})["enabled"]
 	assert.Equal(t, versioningEnabled, true, "Versioning is not enabled")

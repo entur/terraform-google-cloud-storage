@@ -1,6 +1,9 @@
 name: Terraform Integration Tests
 
 on:
+  push:
+    paths:
+      - 'modules/bucket/**'
   pull_request:
     branches:
       - master
@@ -43,4 +46,4 @@ jobs:
         run: go mod download
       - name: Run Go Integration Tests
         working-directory: tests
-        run: go test -tags=integration
+        run: go test -tags=integration -timeout 30m
