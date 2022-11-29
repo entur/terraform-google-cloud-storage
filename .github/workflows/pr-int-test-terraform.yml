@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'modules/bucket/**'
+      - 'tests/**'
   pull_request:
     branches:
       - master
