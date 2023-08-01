@@ -46,13 +46,14 @@ resource "google_storage_bucket" "main" {
         storage_class = try(lifecycle_rule.value.action.storage_class, null)
       }
       condition {
-        age                        = try(lifecycle_rule.value.condition.age, null)
+        age                        = try(lifecycle_rule.value.condition.age, 0)
         created_before             = try(lifecycle_rule.value.condition.created_before, null)
         with_state                 = try(lifecycle_rule.value.condition.with_state, null)
         matches_storage_class      = try(lifecycle_rule.value.condition.matches_storage_class, null)
-        num_newer_versions         = try(lifecycle_rule.value.condition.num_newer_versions, null)
+        num_newer_versions         = try(lifecycle_rule.value.condition.num_newer_versions, 0)
         custom_time_before         = try(lifecycle_rule.value.condition.custom_time_before, null)
-        days_since_noncurrent_time = try(lifecycle_rule.value.condition.days_since_noncurrent_time, null)
+        days_since_custom_time     = try(lifecycle_rule.value.condition.days_since_custom_time, 0)
+        days_since_noncurrent_time = try(lifecycle_rule.value.condition.days_since_noncurrent_time, 0)
         noncurrent_time_before     = try(lifecycle_rule.value.condition.noncurrent_time_before, null)
       }
     }
