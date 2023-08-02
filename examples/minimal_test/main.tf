@@ -21,7 +21,6 @@ module "cloud-storage" {
   # source     = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=vVERSION"
   source = "../../modules/bucket"
   init   = module.init
-  #init       = var.init
   generation = var.generation != null ? var.generation : random_integer.random_revision_generation.result
   name_override = var.name_override != null ? var.name_override : var.init.app.id
 }
