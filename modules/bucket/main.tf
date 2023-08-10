@@ -61,6 +61,7 @@ resource "google_storage_bucket" "main" {
 }
 
 resource "kubernetes_config_map" "main" {
+  count = var.create_kubernetes_resources ? 1 : 0
   metadata {
     name      = local.config_map_name
     namespace = var.init.app.name

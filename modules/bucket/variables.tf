@@ -90,3 +90,9 @@ variable "lifecycle_rules_override" {
     error_message = "Every lifecycle rule must have an 'action.type', and contain a 'condition', or be 'null'."
   }
 }
+
+variable "create_kubernetes_resources" {
+  description = "Whether to create a Kubernetes config map containing the bucket name and URL."
+  type        = bool
+  default     = true
+}
