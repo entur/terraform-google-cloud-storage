@@ -52,6 +52,7 @@ resource "google_storage_bucket" "main" {
         matches_storage_class      = try(lifecycle_rule.value.condition.matches_storage_class, null)
         num_newer_versions         = try(lifecycle_rule.value.condition.num_newer_versions, null)
         custom_time_before         = try(lifecycle_rule.value.condition.custom_time_before, null)
+        days_since_custom_time     = try(lifecycle_rule.value.condition.days_since_custom_time, null)
         days_since_noncurrent_time = try(lifecycle_rule.value.condition.days_since_noncurrent_time, null)
         noncurrent_time_before     = try(lifecycle_rule.value.condition.noncurrent_time_before, null)
       }
@@ -60,6 +61,7 @@ resource "google_storage_bucket" "main" {
 }
 
 resource "kubernetes_config_map" "main" {
+  count = var.create_kubernetes_resources ? 1 : 0
   metadata {
     name      = local.config_map_name
     namespace = var.init.app.name

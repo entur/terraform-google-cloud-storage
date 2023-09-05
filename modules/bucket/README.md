@@ -31,6 +31,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_init"></a> [init](#input\_init) | Entur init module output. https://github.com/entur/terraform-gcp-init. Used to determine application name, application project, labels, and resource names. | <pre>object({<br>    app = object({<br>      id         = string<br>      name       = string<br>      owner      = string<br>      project_id = string<br>    })<br>    environment   = string<br>    labels        = map(string)<br>    is_production = bool<br>  })</pre> | n/a | yes |
+| <a name="input_create_kubernetes_resources"></a> [create\_kubernetes\_resources](#input\_create\_kubernetes\_resources) | Whether to create a Kubernetes config map containing the bucket name and URL. | `bool` | `true` | no |
 | <a name="input_disable_offsite_backup"></a> [disable\_offsite\_backup](#input\_disable\_offsite\_backup) | Disable offsite backup of the bucket. Offsite backup is only applied to production environments. | `bool` | `false` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Whether to allow Terraform to delete the bucket even if it contains objects. | `bool` | `false` | no |
 | <a name="input_generation"></a> [generation](#input\_generation) | The generation (aka serial no.) of the instance. Starts at 1, ends at 999. Will be padded with leading zeros. | `number` | `1` | no |
