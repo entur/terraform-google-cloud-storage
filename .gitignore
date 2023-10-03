@@ -22,3 +22,5 @@ tfplan
 
 # .auto.var files
 *.auto.tfvars
+
+results.sarif

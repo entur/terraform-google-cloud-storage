@@ -1,0 +1,4 @@
+skip-check: 
+  - CKV_TF_1    # Allow version not sha
+  - CKV_GCP_114 # Entur must allow public access
+  - CKV_GCP_62  # Access log not required
