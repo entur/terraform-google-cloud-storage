@@ -27,3 +27,7 @@ variable "name_override" {
   type        = string
   default     = null
 }
+
+variable "enable_access_logs" {
+  default = true
+}

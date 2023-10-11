@@ -1,3 +1,8 @@
+variable "enable_access_logs" {
+  description = "Set to true to enable access logs, log bucket will have bucket name appended with 'access-logs'. Bucket 'ent-gcs-foo-dev-001' will have access logs in bucket 'ent-gcs-foo-dev-001-access-logs'"
+  default     = false
+}
+
 variable "init" {
   description = "Entur init module output. https://github.com/entur/terraform-gcp-init. Used to determine application name, application project, labels, and resource names."
   type = object({
