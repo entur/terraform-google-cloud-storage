@@ -1,5 +1,5 @@
 variable "enable_access_logs" {
-  description = "Set to true to enable access logs, log bucket will have bucket name appended with 'access-logs'. Bucket 'ent-gcs-foo-dev-001' will have access logs in bucket 'ent-gcs-foo-dev-001-access-logs'"
+  description = "Set to true to enable access logs, log bucket will have bucket shortname appended with 'access-logs'. Bucket 'ent-gcs-foo-dev-001' will have access logs in bucket 'ent-gcs-foo-access-logs-dev-001'"
   default     = false
 }
 

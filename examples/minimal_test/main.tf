@@ -23,5 +23,5 @@ module "cloud-storage" {
   init               = module.init
   generation         = var.generation != null ? var.generation : random_integer.random_revision_generation.result
   name_override      = var.name_override != null ? var.name_override : var.init.app.id
-  enable_access_logs = var.enable_access_logs != null ? var.enable_access_logs : true
+  enable_access_logs = var.enable_access_logs
 }
