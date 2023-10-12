@@ -34,7 +34,7 @@ func TestCloudStorageModule(t *testing.T) {
 	cloudStorage.DefineVerify(func(assert *assert.Assertions) {
 		generationStr := fmt.Sprintf("%03d", generation)
 		expectedName := fmt.Sprintf("gs://ent-gcs-%s-dev-%s/", nameOverride, generationStr)
-		expectedLogBucket := fmt.Sprintf("ent-gcs-%s-access-logs-dev-%s", nameOverride, generationStr)
+		expectedLogBucket := fmt.Sprintf("ent-gcs-%s-axlogs-dev-%s", nameOverride, generationStr)
 
 		bucket := gcloud.Run(t, fmt.Sprintf("storage buckets describe %s", cloudStorage.GetStringOutput("cloud_storage_bucket_url")))
 		assert.Equal(expectedName, bucket.Get("storage_url").String(), "Bucket name is "+expectedName)
