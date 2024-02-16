@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.0...v0.2.1) (2024-02-16)
+
+
+### Bug Fixes
+
+* Cloud 1719 ([#23](https://github.com/entur/terraform-google-cloud-storage/issues/23)) ([9f60e4a](https://github.com/entur/terraform-google-cloud-storage/commit/9f60e4a9a4890e98e80bc6b163bac850e9622a91))
+* offsite backup label ([a68a491](https://github.com/entur/terraform-google-cloud-storage/commit/a68a491e27966a60bd103ce94783fa67d41ca2ed))
+
 ## [0.2.0](https://github.com/entur/terraform-google-cloud-storage/compare/v0.1.0...v0.2.0) (2023-08-11)
 
 

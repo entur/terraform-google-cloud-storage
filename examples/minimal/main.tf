@@ -9,7 +9,7 @@ module "init" {
 
 # ci: x-release-please-start-version
 module "cloud-storage" {
-  source = "github.com/entur/terraform-google-cloud-storage//modules/bucket?ref=v0.2.0"
+  source = "github.com/entur/terraform-google-cloud-storage//modules/bucket?ref=v0.2.1"
   init   = module.init
 }
 # ci: x-release-please-end
