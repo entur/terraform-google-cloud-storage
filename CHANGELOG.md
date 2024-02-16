@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.1...v0.2.2) (2024-02-16)
+
+
+### Bug Fixes
+
+* no shared config available in github ([#25](https://github.com/entur/terraform-google-cloud-storage/issues/25)) ([c83c173](https://github.com/entur/terraform-google-cloud-storage/commit/c83c173958572a08e9728e3709f9c12b147e5564))
+
 ## [0.2.1](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.0...v0.2.1) (2024-02-16)
 
 
