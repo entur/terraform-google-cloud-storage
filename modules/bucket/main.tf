@@ -2,6 +2,7 @@ locals {
   generation       = format("%03d", var.generation)
   bucket_shortname = var.name_override != null ? var.name_override : var.init.app.id
   bucket_name      = "ent-gcs-${local.bucket_shortname}-${var.init.environment}-${local.generation}"
+  log_bucket_name  = var.enable_access_logs ? "ent-gcs-${local.bucket_shortname}-axlogs-${var.init.environment}-${local.generation}" : ""
   config_map_name  = var.name_override != null ? "${var.init.app.name}-${var.name_override}-bucket" : "${var.init.app.name}-bucket"
   storage_purpose = {
     standard = {
@@ -30,6 +31,12 @@ resource "google_storage_bucket" "main" {
   force_destroy = var.force_destroy
   storage_class = local.storage_purpose[var.storage_purpose].storage_class
 
+  dynamic "logging" {
+    for_each = var.enable_access_logs ? ["this"] : []
+    content {
+      log_bucket = local.log_bucket_name
+    }
+  }
 
   labels                      = merge(var.init.labels, local.offsite_backup_label)
   uniform_bucket_level_access = true
@@ -71,5 +78,23 @@ resource "kubernetes_config_map" "main" {
   data = {
     BUCKET_NAME = google_storage_bucket.main.name
     BUCKET_URL  = google_storage_bucket.main.url
+  }
+}
+
+resource "google_storage_bucket_access_control" "access_rule" {
+  count = var.enable_access_logs ? 1 : 0
+  bucket = google_storage_bucket.access_logs[0].name
+  role   = "READER"
+  entity = "allAuthenticatedUsers"
+}
+
+resource "google_storage_bucket" "access_logs" {
+  count = var.enable_access_logs ? 1 : 0
+  name     = local.log_bucket_name
+  uniform_bucket_level_access = true
+  location      = local.storage_purpose[var.storage_purpose].location
+  labels                      = merge(var.init.labels, local.offsite_backup_label)
+  versioning {
+    enabled = var.versioning
   }
 }
