@@ -72,3 +72,4 @@ In addition to a workflow running Terrascan on all git push events, a separate G
 * [.github/workflows/pr-unit-test-terraform.yaml](.github/workflows/pr-unit-test-terraform.yaml)
 
 These run every time a change is pushed to GitHub, but filters in the workflows stops the tests from running when no changes is made in the modules.
+
