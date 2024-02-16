@@ -1,6 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
+    "local>enturas/renovate-presets:default.json5",
+    "local>enturas/renovate-presets//team-plattform/terraform",
     "config:base"
   ]
 }
