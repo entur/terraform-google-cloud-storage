@@ -17,7 +17,7 @@ A Cloud Storage module that uses the [init module](https://github.com/entur/terr
 
 ```
 module "cloud-storage" {
-  source = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=v0.2.1"
+  source = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=v0.2.2"
   ...
 }
 ```
