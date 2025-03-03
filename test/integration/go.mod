@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.7.0
 	github.com/gruntwork-io/terratest v0.43.3
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
