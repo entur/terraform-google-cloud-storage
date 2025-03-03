@@ -19,8 +19,8 @@ module "cloud-storage" {
   # module from GitHub, the 'source' parameter must refer to it's public location.
   # See README.md for instructions.
   # source     = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=vVERSION"
-  source = "../../modules/bucket"
-  init   = module.init
-  generation = var.generation != null ? var.generation : random_integer.random_revision_generation.result
+  source        = "../../modules/bucket"
+  init          = module.init
+  generation    = var.generation != null ? var.generation : random_integer.random_revision_generation.result
   name_override = var.name_override != null ? var.name_override : var.init.app.id
 }
