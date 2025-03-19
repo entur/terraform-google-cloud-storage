@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.2...v0.2.3) (2025-03-19)
+
+
+### Bug Fixes
+
+* [skip ci] common dependabot config, master 2 main ([#29](https://github.com/entur/terraform-google-cloud-storage/issues/29)) ([339c08c](https://github.com/entur/terraform-google-cloud-storage/commit/339c08c7a7bc5f0d2a879679dd809ba2be6a56e9))
+* [skip ci] common dependabot config2 ([#31](https://github.com/entur/terraform-google-cloud-storage/issues/31)) ([efc8e59](https://github.com/entur/terraform-google-cloud-storage/commit/efc8e598509b45129ec183f5797e30caa59e34af))
+
 ## [0.2.2](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.1...v0.2.2) (2024-02-16)
 
 
