@@ -24,8 +24,8 @@ jobs:
       - id: "auth"
         uses: "google-github-actions/auth@v2"
         with:
-          workload_identity_provider: ${{ secrets.PROVIDER_NAME }}
-          service_account: ${{ secrets.SA_EMAIL }}
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.SERVICE_ACCOUNT }}
       - id: "get-credentials"
         uses: "google-github-actions/get-gke-credentials@v2"
         with:
