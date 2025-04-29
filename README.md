@@ -15,9 +15,9 @@ A Cloud Storage module that uses the [init module](https://github.com/entur/terr
 <!-- ci: x-release-please-start-version -->
 ### Example using the latest release
 
-```
+```terraform
 module "cloud-storage" {
-  source = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=v0.2.2"
+  source = "github.com/entur/terraform-google-cloud-storage//modules/cloud-storage?ref=v0"
   ...
 }
 ```
@@ -72,4 +72,3 @@ In addition to a workflow running Terrascan on all git push events, a separate G
 * [.github/workflows/pr-unit-test-terraform.yaml](.github/workflows/pr-unit-test-terraform.yaml)
 
 These run every time a change is pushed to GitHub, but filters in the workflows stops the tests from running when no changes is made in the modules.
-
