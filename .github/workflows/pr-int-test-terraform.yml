@@ -1,24 +1,16 @@
 name: Terraform Integration Tests
 
+# This workflows requires secrets and needs to be run on approval or manually
 on:
-  pull_request:
-    paths:
-      - "modules/bucket/**"
-      - "test/**"
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
-      - ready_for_review
+  pull_request_review:
+    types: [submitted]
   workflow_dispatch:
 
 jobs:
-  terratest_bucket:
+  integration-test:
     permissions:
       contents: "read"
       id-token: "write"
-
     name: Integration test Bucket module
     runs-on: ubuntu-latest
     steps:
