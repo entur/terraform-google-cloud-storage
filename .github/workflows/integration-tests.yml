@@ -2,7 +2,7 @@ name: Terraform Integration Tests
 
 # This workflows requires secrets and needs to be run on workflow_dispatch
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   integration-test:
