@@ -1,9 +1,7 @@
 name: Terraform Integration Tests
 
-# This workflows requires secrets and needs to be run on approval or manually
+# This workflows requires secrets and needs to be run on workflow_dispatch
 on:
-  pull_request_review:
-    types: [submitted]
   workflow_dispatch:
 
 jobs:
@@ -26,8 +24,8 @@ jobs:
       - id: "auth"
         uses: "google-github-actions/auth@v2"
         with:
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ secrets.PROVIDER_NAME }}
+          service_account: ${{ secrets.SA_EMAIL }}
       - id: "get-credentials"
         uses: "google-github-actions/get-gke-credentials@v2"
         with:
