@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+    environment: dev
     name: Integration test Bucket module
     runs-on: ubuntu-latest
     steps:
@@ -25,8 +26,8 @@ jobs:
       - id: "auth"
         uses: "google-github-actions/auth@v2"
         with:
-          workload_identity_provider: ${{ secrets.PROVIDER_NAME }}
-          service_account: ${{ secrets.SA_EMAIL }}
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
       - id: "get-credentials"
         uses: "google-github-actions/get-gke-credentials@v2"
         with:
