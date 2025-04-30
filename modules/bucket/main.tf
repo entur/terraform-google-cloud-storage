@@ -20,7 +20,8 @@ locals {
       }
     }
   }
-  offsite_backup_label = var.disable_offsite_backup && var.init.is_production ? { backup_offsite = false } : {} # Add the label for opt-out of offsite backup in prod environments when disable_offsite_backup is true
+  # Add the label for opt-out of offsite backup in prod environments when disable_offsite_backup is true:
+  offsite_backup_label = var.disable_offsite_backup && var.init.is_production ? { backup_offsite = false } : {}
 }
 
 resource "google_storage_bucket" "main" {
