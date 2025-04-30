@@ -1,6 +1,6 @@
 module github.com/entur/terraform-google-cloud-storage
 
-go 1.20
+go 1.24
 
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.7.0
