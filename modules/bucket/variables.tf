@@ -81,6 +81,7 @@ variable "lifecycle_rules_override" {
   type = map(object({
     action = object({
       type = string
+      storage_class = optional(string)
     })
     condition = map(string)
   }))
