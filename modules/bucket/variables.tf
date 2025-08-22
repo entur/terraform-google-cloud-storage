@@ -80,7 +80,8 @@ variable "lifecycle_rules_override" {
   description = "The bucket's Lifecycle Rules configuration (advanced). Will override the 'versioned_object_retention_days' setting."
   type = map(object({
     action = object({
-      type = string
+      type          = string
+      storage_class = optional(string)
     })
     condition = map(string)
   }))
