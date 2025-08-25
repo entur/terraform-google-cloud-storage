@@ -15,5 +15,4 @@ jobs:
   release:
     uses: entur/gha-meta/.github/workflows/release.yml@v1
     with:
-      path: "./"
       release_type: "terraform-module"
