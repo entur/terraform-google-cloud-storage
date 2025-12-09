@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.3...v0.2.4) (2025-12-09)
+
+
+### Bug Fixes
+
+* lock k8s provider to  only update minor/patch versions ([#59](https://github.com/entur/terraform-google-cloud-storage/issues/59)) ([9844096](https://github.com/entur/terraform-google-cloud-storage/commit/9844096c68ae06113314c1b1b7e1f66742a968f1))
+
 ## [0.2.3](https://github.com/entur/terraform-google-cloud-storage/compare/v0.2.2...v0.2.3) (2025-08-25)
 
 
