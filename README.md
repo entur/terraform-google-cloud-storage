@@ -27,7 +27,7 @@ See the `README.md` under each module's subfolder for a list of supported inputs
 
 ### Version constraints
 
-You can control the version of a module dependency by adding `?ref=TAG` at the end of the source argument, as shown in the example above. This is highly recommended. You can find a list of available versions [here](https://github.com/entur/terraform-google-cloud-storage/releases).
+You can control the version of a module dependency by adding `?ref=TAG` at the end of the source argument, as shown in the example above. This is highly recommended. For a list of available versions see [releases](https://github.com/entur/terraform-google-cloud-storage/releases).
 
 Dependency automation tools such as Renovate Bot will be able to discover new releases and suggest updates automatically.
 
