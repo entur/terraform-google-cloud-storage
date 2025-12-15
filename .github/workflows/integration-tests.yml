@@ -13,7 +13,7 @@ jobs:
     name: Integration test Bucket module
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: actions/setup-go@v6
         with:
           go-version-file: "test/integration/go.mod"
