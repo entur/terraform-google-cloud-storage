@@ -1,10 +1,10 @@
 module github.com/entur/terraform-google-cloud-storage
 
-go 1.26
+go 1.26.0
 
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.18.0
-	github.com/gruntwork-io/terratest v1.0.0
+	github.com/gruntwork-io/terratest v1.0.1
 	github.com/stretchr/testify v1.11.1
 )
 
@@ -55,8 +55,8 @@ require (
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.35.0 // indirect
 	golang.org/x/tools v0.42.0 // indirect
-	google.golang.org/protobuf v1.36.11 // indirect
+	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/kube-openapi v0.0.0-20250910181357-589584f1c912 // indirect
+	k8s.io/kube-openapi v0.0.0-20260317180543-43fb72c5454a // indirect
 	sigs.k8s.io/kustomize/kyaml v0.21.0 // indirect
 )
